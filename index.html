@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMBER VPN — Private connection, honest about it</title>
+<meta name="description" content="AMBER VPN. Download the app, see how it works, get support.">
+<style>
+  :root{
+    --ink:#0b0e14;
+    --panel:#12161f;
+    --panel-line:#232838;
+    --amber:#f5a623;
+    --amber-dim:#8a6420;
+    --paper:#e9e6dd;
+    --paper-dim:#9aa0ad;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'IBM Plex Sans', 'Segoe UI', -apple-system, sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+
+  a{color:inherit;}
+  .wrap{max-width:920px; margin:0 auto; padding:0 24px;}
+
+  /* ---- Beacon signature element ---- */
+  .beacon-field{
+    position:relative;
+    height:1px;
+    overflow:visible;
+  }
+  .beacon{
+    position:absolute;
+    left:50%;
+    top:0;
+    width:10px;height:10px;
+    margin-left:-5px;
+    border-radius:50%;
+    background:var(--amber);
+    box-shadow:0 0 0 0 rgba(245,166,35,0.6);
+    animation:pulse 2.6s ease-out infinite;
+  }
+  @keyframes pulse{
+    0%{ box-shadow:0 0 0 0 rgba(245,166,35,0.55), 0 0 12px 2px rgba(245,166,35,0.8); }
+    70%{ box-shadow:0 0 0 26px rgba(245,166,35,0), 0 0 12px 2px rgba(245,166,35,0.4); }
+    100%{ box-shadow:0 0 0 0 rgba(245,166,35,0), 0 0 12px 2px rgba(245,166,35,0); }
+  }
+
+  /* ---- Header ---- */
+  header{
+    padding:120px 0 80px;
+    text-align:center;
+  }
+  .mark{
+    font-family:'IBM Plex Mono', monospace;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    font-size:12px;
+    color:var(--amber);
+    margin-bottom:28px;
+  }
+  h1{
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:600;
+    font-size:clamp(40px, 7vw, 72px);
+    line-height:1.05;
+    margin:0 0 24px;
+    letter-spacing:-0.01em;
+  }
+  h1 em{
+    font-style:italic;
+    color:var(--amber);
+  }
+  .lede{
+    font-size:18px;
+    line-height:1.6;
+    color:var(--paper-dim);
+    max-width:520px;
+    margin:0 auto;
+  }
+
+  /* ---- Sections ---- */
+  section{padding:64px 0;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:var(--amber-dim);
+    margin-bottom:14px;
+  }
+  h2{
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:500;
+    font-size:32px;
+    margin:0 0 32px;
+  }
+
+  /* ---- Download cards ---- */
+  .downloads{
+    display:grid;
+    gap:1px;
+    background:var(--panel-line);
+    border:1px solid var(--panel-line);
+    border-radius:12px;
+    overflow:hidden;
+  }
+  .dl{
+    background:var(--panel);
+    padding:24px 28px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    text-decoration:none;
+    transition:background 0.2s ease, padding-left 0.2s ease;
+  }
+  .dl:hover{
+    background:#171c28;
+    padding-left:34px;
+  }
+  .dl-left{
+    display:flex;
+    align-items:baseline;
+    gap:16px;
+  }
+  .dl-source{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--amber-dim);
+    width:96px;
+    flex-shrink:0;
+  }
+  .dl-label{
+    font-size:17px;
+    color:var(--paper);
+  }
+  .dl-arrow{
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--amber);
+    font-size:18px;
+  }
+
+  .note{
+    margin-top:20px;
+    font-size:13px;
+    color:var(--paper-dim);
+    line-height:1.7;
+  }
+
+  /* ---- Verify strip ---- */
+  .verify{
+    border-top:1px solid var(--panel-line);
+    border-bottom:1px solid var(--panel-line);
+    background:var(--panel);
+  }
+  .verify .wrap{
+    padding:40px 24px;
+    display:flex;
+    align-items:center;
+    gap:24px;
+    flex-wrap:wrap;
+  }
+  .verify code{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--amber);
+    background:rgba(245,166,35,0.08);
+    border:1px solid rgba(245,166,35,0.25);
+    padding:10px 14px;
+    border-radius:6px;
+  }
+  .verify p{
+    margin:0;
+    font-size:14px;
+    color:var(--paper-dim);
+    max-width:480px;
+  }
+
+  footer{
+    padding:48px 0 60px;
+    text-align:center;
+    font-size:12px;
+    color:var(--paper-dim);
+    font-family:'IBM Plex Mono', monospace;
+  }
+</style>
+</head>
+<body>
+
+<div class="beacon-field"><span class="beacon" aria-hidden="true"></span></div>
+
+<header>
+  <div class="wrap">
+    <div class="mark">AMBER VPN</div>
+    <h1>A private connection,<br><em>held in plain sight.</em></h1>
+    <p class="lede">Amber preserves what's inside it in perfect clarity — that's the idea. Your traffic, kept private, without pretending the app is something it isn't.</p>
+  </div>
+</header>
+
+<section id="download">
+  <div class="wrap">
+    <div class="eyebrow">01 — Download</div>
+    <h2>Get the app</h2>
+    <div class="downloads">
+      <a class="dl" href="https://www.mediafire.com/file/ntcq0coq44ar43t/AMBERVPN%2521.apk/file" target="_blank" rel="noopener">
+        <div class="dl-left">
+          <span class="dl-source">MediaFire</span>
+          <span class="dl-label">Direct APK download</span>
+        </div>
+        <span class="dl-arrow">↗</span>
+      </a>
+      <a class="dl" href="https://drive.google.com/file/d/1yq5BKSu3iK2koG53b0VUjslK17mk1Kih/view?usp=drivesdk" target="_blank" rel="noopener">
+        <div class="dl-left">
+          <span class="dl-source">Google Drive</span>
+          <span class="dl-label">Mirror download</span>
+        </div>
+        <span class="dl-arrow">↗</span>
+      </a>
+      <a class="dl" href="https://t.me/savingaambervpn/11" target="_blank" rel="noopener">
+        <div class="dl-left">
+          <span class="dl-source">Telegram</span>
+          <span class="dl-label">Channel &amp; latest builds</span>
+        </div>
+        <span class="dl-arrow">↗</span>
+      </a>
+    </div>
+    <p class="note">Installing outside the Play Store requires allowing your device to install unknown apps for your browser. Only download from the links above.</p>
+  </div>
+</section>
+
+<div class="verify">
+  <div class="wrap">
+    <code>/app-ads.txt</code>
+    <p>This site also hosts our Authorized Sellers file for app advertising, so ad platforms can verify our inventory.</p>
+  </div>
+</div>
+
+<footer>
+  AMBER VPN — © 2026
+</footer>
+
+</body>
+</html>
